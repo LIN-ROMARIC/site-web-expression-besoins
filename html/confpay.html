@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de Paiement - Handicap International</title>
+    <style>
+        :root {
+            --hi-blue: #0089CF;
+            --hi-blue-dark: #006BA6;
+            --hi-blue-light: #E6F5FC;
+            --hi-text-dark: #2C3E50;
+            --hi-text-gray: #5A6C7D;
+            --hi-white: #FFFFFF;
+            --hi-gray-light: #F5F7FA;
+            --hi-gray-border: #D8DDE6;
+            --hi-success: #10b981;
+            --hi-success-light: #d1fae5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--hi-blue-light) 0%, var(--hi-white) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .confpay_container {
+            max-width: 700px;
+            width: 100%;
+            background: var(--hi-white);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 137, 207, 0.15);
+            overflow: hidden;
+            animation: confpay_slideIn 0.6s ease-out;
+        }
+
+        @keyframes confpay_slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .confpay_header {
+            background: linear-gradient(135deg, var(--hi-blue) 0%, var(--hi-blue-dark) 100%);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .confpay_header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: confpay_pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes confpay_pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .confpay_icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: var(--hi-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 1;
+            animation: confpay_checkBounce 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes confpay_checkBounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .confpay_checkmark {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--hi-success);
+            position: relative;
+        }
+
+        .confpay_checkmark::after {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 8px;
+            width: 10px;
+            height: 18px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+
+        .confpay_title {
+            color: var(--hi-white);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .confpay_subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .confpay_body {
+            padding: 40px 30px;
+        }
+
+        .confpay_message {
+            background: var(--hi-success-light);
+            border-left: 5px solid var(--hi-success);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .confpay_message_text {
+            color: var(--hi-text-dark);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .confpay_details {
+            background: var(--hi-gray-light);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .confpay_details_title {
+            color: var(--hi-blue-dark);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--hi-blue);
+        }
+
+        .confpay_info_row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--hi-gray-border);
+        }
+
+        .confpay_info_row:last-child {
+            border-bottom: none;
+        }
+
+        .confpay_info_label {
+            color: var(--hi-text-gray);
+            font-weight: 500;
+        }
+
+        .confpay_info_value {
+            color: var(--hi-text-dark);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .confpay_total {
+            background: var(--hi-blue-light);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .confpay_total .confpay_info_row {
+            border: none;
+        }
+
+        .confpay_total .confpay_info_label,
+        .confpay_total .confpay_info_value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--hi-blue-dark);
+        }
+
+        .confpay_reference {
+            background: var(--hi-white);
+            border: 2px dashed var(--hi-blue);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .confpay_reference_label {
+            color: var(--hi-text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .confpay_reference_number {
+            color: var(--hi-blue-dark);
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+
+        .confpay_actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .confpay_button {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .confpay_button_primary {
+            background: linear-gradient(135deg, var(--hi-blue) 0%, var(--hi-blue-dark) 100%);
+            color: var(--hi-white);
+            box-shadow: 0 4px 15px rgba(0, 137, 207, 0.3);
+        }
+
+        .confpay_button_primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 137, 207, 0.4);
+        }
+
+        .confpay_button_secondary {
+            background: var(--hi-white);
+            color: var(--hi-blue-dark);
+            border: 2px solid var(--hi-blue);
+        }
+
+        .confpay_button_secondary:hover {
+            background: var(--hi-blue-light);
+        }
+
+        .confpay_footer {
+            background: var(--hi-gray-light);
+            padding: 25px 30px;
+            text-align: center;
+            border-top: 1px solid var(--hi-gray-border);
+        }
+
+        .confpay_footer_text {
+            color: var(--hi-text-gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .confpay_email {
+            color: var(--hi-blue-dark);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .confpay_email:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .confpay_container {
+                border-radius: 15px;
+            }
+
+            .confpay_header {
+                padding: 30px 20px;
+            }
+
+            .confpay_title {
+                font-size: 1.5rem;
+            }
+
+            .confpay_subtitle {
+                font-size: 1rem;
+            }
+
+            .confpay_body {
+                padding: 30px 20px;
+            }
+
+            .confpay_info_row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .confpay_info_value {
+                text-align: left;
+            }
+
+            .confpay_actions {
+                flex-direction: column;
+            }
+
+            .confpay_button {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confpay_container">
+        <div class="confpay_header">
+            <div class="confpay_icon">
+                <div class="confpay_checkmark"></div>
+            </div>
+            <h1 class="confpay_title">Paiement Confirmé !</h1>
+            <p class="confpay_subtitle">Merci pour votre contribution</p>
+        </div>
+
+        <div class="confpay_body">
+            <div class="confpay_message">
+                <p class="confpay_message_text">
+                    Votre paiement a été traité avec succès. Un email de confirmation vous a été envoyé avec tous les détails de votre transaction.
+                </p>
+            </div>
+
+            <div class="confpay_reference">
+                <p class="confpay_reference_label">Numéro de transaction</p>
+                <p class="confpay_reference_number">TRX-2025-A7B9C4</p>
+            </div>
+            <div class="confpay_actions">
+                <a href="accueil.html" class="confpay_button confpay_button_secondary">Retour à l'accueil</a>
+            </div>
+        </div>
+
+        <div class="confpay_footer">
+            <p class="confpay_footer_text">
+                Une question ? Contactez-nous à <a href="mailto:contact@handicap-international.fr" class="confpay_email">contact@handicap-international.fr</a>
+            </p>
+            <p class="confpay_footer_text" style="margin-top: 10px; font-size: 0.85rem;">
+                Handicap International - Association loi 1901
+            </p>
+        </div>
+    </div>
+</body>
+</html>

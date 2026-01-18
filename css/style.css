@@ -1,0 +1,598 @@
+/* ============================================
+   CHARTE GRAPHIQUE HANDICAP INTERNATIONAL
+   + styles Plan intégrés
+   ============================================ */
+
+:root {
+    /* Couleurs site */
+    --hi-blue: #0089CF;
+    --hi-blue-dark: #006BA6;
+    --hi-blue-light: #E6F5FC;
+    --hi-text-dark: #2C3E50;
+    --hi-text-gray: #5A6C7D;
+    --hi-white: #FFFFFF;
+    --hi-gray-light: #F5F7FA;
+    --hi-gray-border: #D8DDE6;
+
+    /* Variables plan (conservées) */
+    --plan-bg: #f5f7fa;
+    --plan-txt: #0f172a;
+    --plan-muted: #475569;
+    --plan-line: #0f172a;
+    --plan-resto: #f7ecd8;
+    --plan-tournoi: #d9ecf6;
+    --plan-san: #f8ead6;
+    --tile-bg: #eef6fb;
+    --tile-border: #c6d8e5;
+    --tile-hover: #e7f2fa;
+    --finales-bg: #e3f6e8;
+    --finales-border: #bde2c6;
+
+    /* Layout */
+    --radius: 12px;
+    --outer: 3px;
+    --inner: 2px;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { height: 100%; }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--hi-text-dark);
+    background-color: var(--hi-white);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ============================================
+   HEADER & NAVIGATION
+   ============================================ */
+header {
+    background: #0066cc;
+    padding: 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    background-color: #0066cc;
+    width: 100%;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 20px 30px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #0052a3;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #0066cc;
+    min-width: 200px;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 12px 30px;
+    font-size: 15px;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu li:last-child a {
+    border-bottom: none;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #0052a3;
+    padding-left: 35px;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    flex: 1;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h1 { color: var(--hi-blue); font-size: 2.8rem; margin-bottom: 2rem; text-align:center; font-weight:700; text-transform:uppercase; letter-spacing:1px; padding-bottom:1rem; border-bottom:4px solid var(--hi-blue); }
+h2 { color: var(--hi-blue-dark); font-size:2rem; margin-top:3rem; margin-bottom:1.5rem; padding-left:1rem; border-left:5px solid var(--hi-blue); font-weight:600; }
+h3 { color: var(--hi-blue); font-size:1.5rem; margin-top:2rem; margin-bottom:1rem; text-align:center; }
+
+/* ============================================
+   SOMMAIRE, TABLES, LISTES, PACKS (inchangés)
+   ============================================ */
+
+main > ul {  padding:2rem; border-radius:10px; list-style:none }
+main > ul li { margin-bottom:1rem; padding-left:2rem; position:relative; list-style-type: none; }
+main > ul li::before { content: "▶"; position:absolute; left:0; color:var(--hi-blue); font-size:0.8rem; }
+main > ul a { color:var(--hi-blue-dark); text-decoration:none; font-weight:600; font-size:1.1rem; }
+main > ul a:hover { color:var(--hi-blue); text-decoration:underline; }
+
+table { width:100%; border-collapse:collapse; margin:2rem 0; background:var(--hi-white); box-shadow:0 2px 15px rgba(0,0,0,0.1); border-radius:10px; overflow:hidden; }
+caption { font-size:1.5rem; font-weight:700; color:var(--hi-blue); padding:1.5rem; background:var(--hi-blue-light); text-align:left; }
+thead { background: linear-gradient(135deg,var(--hi-blue) 0%,var(--hi-blue-dark) 100%); color:var(--hi-white); }
+th { padding:1.2rem; text-align:left; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; }
+td { padding:1.2rem; border-bottom:1px solid var(--hi-gray-border); }
+tbody tr:hover { background-color: var(--hi-blue-light); }
+
+
+/* Style spécifique pour le sommaire de l'évènement */
+.event-sommaire {
+  background-color: var(--hi-blue-light);
+  padding: 1rem 1.5rem; /* Box plus petite */
+  border-radius: 8px;
+  list-style: none;
+  box-shadow: 0 1px 5px rgba(0, 137, 207, 0.08);
+  max-width: 400px; /* Optionnel : limite la largeur */
+  margin: 1rem 0;
+}
+
+/* Style des liens du sommaire */
+.event-sommaire a {
+  text-decoration: none;
+  color: var(--hi-blue-dark);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.event-sommaire a:hover {
+  color: var(--hi-blue);
+  text-decoration: underline;
+}
+
+/* Espacement entre les éléments */
+.event-sommaire li {
+  margin-bottom: 0.5rem;
+}
+.event-sommaire li:last-child {
+  margin-bottom: 0;
+}
+
+
+
+
+/* ============================================
+   FORMULAIRES (inchangés)
+   ============================================ */
+
+.formulaire {
+    max-width: 700px;
+    margin: 3rem auto 4rem auto;
+    background-color: var(--hi-white);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,137,207,0.15);
+    border: 2px solid var(--hi-blue-light);
+}
+.formulaire h2 { margin-top:0; text-align:center; color:var(--hi-blue); margin-bottom:2rem; }
+.formulaire form ul { list-style:none; padding:0; }
+.formulaire form li { margin-bottom:1.5rem; }
+.formulaire label { display:block; color:var(--hi-blue-dark); font-weight:600; margin-bottom:0.5rem; font-size:1.1rem; }
+.formulaire input[type="text"], .formulaire input[type="email"], .formulaire input[type="tel"], .formulaire select, .formulaire input[type="number"] {
+    width:100%; padding:1rem; border:2px solid var(--hi-gray-border); border-radius:8px; font-size:1rem; background:var(--hi-white); transition:all .3s ease;
+}
+.formulaire input:focus, .formulaire select:focus { outline:none; border-color:var(--hi-blue); box-shadow:0 0 0 3px rgba(0,137,207,0.1); }
+.formulaire button[type="submit"] { width:100%; padding:1.2rem; background:linear-gradient(135deg,var(--hi-blue) 0%,var(--hi-blue-dark) 100%); color:var(--hi-white); border:none; border-radius:50px; font-weight:700; cursor:pointer; box-shadow:0 4px 15px rgba(0,137,207,0.3); text-transform:uppercase; letter-spacing:1px; }
+
+/* Radio, personnes, coordonnées, footer (inchangés) */
+.radio-group { display:flex; gap:2rem; flex-wrap:wrap; }
+.radio-label { display:flex; align-items:center; cursor:pointer; font-weight:500; color:var(--hi-text-gray); }
+.radio-label input[type="radio"] { width:20px; height:20px; margin-right:.5rem; accent-color:var(--hi-blue); }
+.personne-supplementaire { margin-top:2rem; padding:2rem; background-color:var(--hi-blue-light); border-radius:10px; border:2px solid var(--hi-blue); }
+.personne-supplementaire h3 { margin:0 0 1.5rem 0; color:var(--hi-blue-dark); font-size:1.3rem; border-left:4px solid var(--hi-blue); padding-left:1rem; }
+.personne-row { display:grid; grid-template-columns:1fr 1fr 200px; gap:0.8rem; align-items:center; }
+
+/* Footer */
+footer {
+  background: var(--hi-blue-dark);
+  color: #ffffff;
+  text-align: center;
+  padding: 1.25rem;
+  margin-top: 2rem;
+}
+
+footer p,
+footer a {
+  color: #ffffff !important;
+  text-decoration: none;
+}
+footer a {
+  color: #ffffff !important;
+}
+footer a:hover { color:var(--hi-white); text-decoration:underline; }
+
+/* ============================================
+   PLAN – styles fusionnés (issue de css.css)
+   section dédiée : table.plan, .zone, .tile, .jeux
+   ============================================ */
+
+/* wrapper plan – permet d'intégrer le plan dans la même charte */
+.wrap {
+    max-width: 1100px;
+    margin: 32px auto;
+    padding: 0 16px;
+    background: transparent;
+}
+
+/* plan container */
+table.plan{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:12px;
+  background:var(--hi-white);
+  border:var(--outer) solid var(--plan-line);
+  border-radius: calc(var(--radius) + 2px);
+  padding:12px;
+}
+table.plan td{
+  vertical-align:top;
+  border:var(--inner) solid var(--plan-line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  position:relative;
+  background:var(--hi-white);
+  min-width:120px;
+}
+
+/* zones couleurs */
+.zone{ padding:0; background:var(--hi-white); }
+.resto{ background: var(--plan-resto); width:260px; }
+.centre{ background: var(--plan-tournoi); }
+.sanitaires{ background: var(--plan-san); width:260px; }
+
+/* zone headers and link overlay */
+.zone h2{ margin:0; padding:10px 12px; border-bottom:var(--inner) solid var(--plan-line); background:rgba(0,0,0,0.03); font-size:1.05rem; }
+.zone .zone-head{ border-bottom:var(--inner) solid var(--plan-line); background:rgba(0,0,0,0.03); }
+.zone .zone-head h2{ margin:0; padding:10px 12px; }
+
+.zone .zone-link{
+  position:absolute; inset:0;
+  display:block; padding-top:54px;
+  text-decoration:none; color:inherit;
+}
+.zone .zone-link:focus{ outline:3px solid rgba(37,99,235,0.45); outline-offset:-3px }
+.zone p, .zone ul{ padding:12px; margin:0 }
+.info li{ margin:.35rem 0 }
+
+/* internal games table */
+table.jeux{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:10px;
+  table-layout:fixed;
+  padding:12px;
+}
+table.jeux td{
+  height:92px;
+  border:none;
+  padding:0;
+}
+td.empty{ background:transparent }
+
+/* tile styles */
+.tile{
+  display:flex; align-items:center; justify-content:center;
+  height:100%; width:100%;
+  background: var(--tile-bg);
+  border:1px solid var(--tile-border);
+  border-radius:12px;
+  font-weight:700; text-align:center;
+  color:inherit; text-decoration:none;
+  position:relative;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
+  cursor:pointer;
+  padding:8px;
+  user-select:none;
+}
+.tile:hover, .tile:focus{
+  transform: translateY(-3px);
+  background: var(--tile-hover);
+  box-shadow: 0 12px 28px rgba(15,23,42,0.12);
+  border-color: rgba(0,137,207,0.25);
+}
+.badge{
+  position:absolute; top:8px; left:8px;
+  background:#fff; color:var(--plan-txt);
+  border:1px solid var(--tile-border);
+  padding:4px 8px; border-radius:999px; font-size:.75rem;
+}
+.tile.finales{ background: var(--finales-bg); border-color: var(--finales-border); }
+.tile.finales:hover{ background:#d7f1df; }
+
+/* small adjustments for tile content */
+.tile span, .tile .label{ display:block; word-break:break-word; font-size:0.95rem; }
+.tile .short{ font-size:.9rem; opacity:.95; }
+
+/* ============================================
+   RESPONSIVE — harmonisation plan + site
+   ============================================ */
+
+@media (max-width: 980px){
+    h1 { font-size: 2.2rem; }
+    .personne-row { grid-template-columns: 1fr 1fr 160px; }
+    
+    /* Navigation responsive */
+    .nav-link { padding: 16px 24px; font-size: 15px; }
+
+    /* plan adapt */
+    .resto, .sanitaires { width: auto; }
+    table.plan { border-spacing: 10px; }
+    table.jeux td { height: 80px; }
+}
+
+@media (max-width: 720px){
+    .personne-row { grid-template-columns: 1fr; gap: 0.6rem; }
+    .headerContact { padding: 0.6rem 0; }
+    .formulaire { padding: 1.6rem; margin: 1.2rem; }
+    h1 { font-size: 1.6rem; padding-bottom: .6rem; border-bottom: 3px solid var(--hi-blue); }
+
+    /* Navigation mobile */
+    .nav-container { padding: 0 10px; }
+    .nav-menu { flex-direction: column; width: 100%; }
+    .nav-item { width: 100%; }
+    .nav-link { padding: 15px 20px; }
+    .dropdown-menu { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; }
+    .nav-item:hover .dropdown-menu { display: none; }
+    .nav-item .dropdown-menu { display: none; }
+
+    /* plan: stack zones vertically */
+    table.plan { border-spacing: 10px; display:block; }
+    table.plan tr { display:block; }
+    table.plan td { display:block; width:100%; }
+    .resto, .centre, .sanitaires { width:100%; }
+    table.jeux { border-spacing: 8px; }
+    table.jeux td { height: 72px; }
+}
+
+@media (max-width: 520px){
+    .title { font-size: 1.15rem; }
+    table.jeux td { height: 64px; }
+    .nav-link { padding: 12px 15px; font-size: 14px; }
+}
+
+.container {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .row.reverse {
+      flex-direction: row-reverse;
+    }
+
+
+.image img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+}
+    .image, .text {
+      width: 48%;
+    }
+    .text h2 {
+      margin-top: 0;
+      font-size: 1.5em;
+      color: #333;
+    }
+    .text p {
+      font-size: 1em;
+      line-height: 1.6;
+      color: #555;
+    }
+
+
+    .tombola-box {
+      border: 2px solid #2b6cb0;
+      background: #f0f7ff;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin: 12px 0;
+      color: #073b6b;
+      font-weight: 500;
+      max-width: 520px;
+    }
+
+    .tombola-box b { color: #06325a; }
+
+    /* Layout avec images latérales */
+    .don_container {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 40px;
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .don_image_gauche,
+    .don_image_droite {
+      flex: 0 0 280px;
+      position: sticky;
+      top: 20px;
+    }
+
+    .don_image_gauche img,
+    .don_image_droite img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      object-fit: cover;
+    }
+
+    .don_formulaire_wrapper {
+      flex: 1;
+      max-width: 600px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .don_container {
+        gap: 20px;
+      }
+
+      .don_image_gauche,
+      .don_image_droite {
+        flex: 0 0 200px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .don_container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .don_image_gauche,
+      .don_image_droite {
+        position: static;
+        flex: none;
+        width: 100%;
+        max-width: 600px;
+      }
+    }
+
+    /* Conteneur global */
+.inscription {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+/* Style de base des packs */
+.inscription .pack {
+  background-color: var(--hi-blue-light);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 137, 207, 0.1);
+  padding: 1.5rem;
+  list-style: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Animation au survol */
+.inscription .pack:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 137, 207, 0.15);
+}
+
+/* Titre du pack */
+.inscription .pack > strong {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--hi-blue-dark);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Liste interne (détails du pack) */
+.inscription .pack ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.inscription .pack ul li {
+  position: relative;
+  margin-bottom: 0.5rem;
+  padding-left: 1.2rem;
+}
+
+/* Petite flèche bleue avant chaque ligne */
+.inscription .pack ul li::before {
+  content: "▶";
+  position: absolute;
+  left: 0;
+  color: var(--hi-blue);
+  font-size: 0.8rem;
+}
+
+/* Disposition spécifique : les deux premiers packs côte à côte, le troisième centré */
+@media (min-width: 700px) {
+  .inscription {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .inscription .pack:last-child {
+    grid-column: 1 / -1;
+    max-width: 60%;
+    margin: 0 auto;
+    
+  }
+}

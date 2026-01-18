@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Inscription - Handicap International</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="accueil.html" class="nav-link">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="presentation_asso.html" class="nav-link">Présentation Assoc</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#evenement" class="nav-link">Événement</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="event.html">Présentation de l'événement</a></li>
+                            <li><a href="inscription.html">Inscription</a></li>
+                            <li><a href="fiche_explicatif.html">Présentation des jeux</a></li>
+                            <li><a href="plan.html">Se repérer sur placee</a></li>
+                            <li><a href="don.html">Faite un Don !</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+  <main>
+    <h1>Inscription au tournoi</h1>
+
+    <section class="formulaire">
+      <h2>Formulaire d'inscription</h2>
+
+      <form action="confpay.html" method="post" id="inscriptionForm">
+        <ul>
+          <li>
+            <label for="pack">Choisir un pack</label>
+            <select name="pack" id="pack" required>
+              <option value="pack-normal">Pack Normal</option>
+              <option value="pack-soutien">Pack Soutien+</option>
+              <option value="pack-soutien++">Pack Soutien++</option>
+            </select>
+          </li>
+
+          <li>
+            <label for="first_nom">Nom (contact)</label>
+            <input type="text" id="first_nom" name="contact_nom" required>
+          </li>
+
+          <li>
+            <label for="first_prenom">Prénom (contact)</label>
+            <input type="text" id="first_prenom" name="contact_prenom" required>
+          </li>
+
+          <li>
+            <label for="first_type">Type (contact)</label>
+            <select id="first_type" name="contact_type" required>
+              <option value="adulte">Adulte</option>
+              <option value="enfant">Enfant</option>
+            </select>
+          </li>
+
+          <li class="inline-group">
+            <div class="col">
+              <label for="nb_personnes">Nombre de personnes</label>
+              <select id="nb_personnes" name="nb_personnes" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="mode_paiement_top">Moyen de paiement</label>
+              <div class="radio-group" id="mode_paiement_top">
+                <label class="radio-label"><input type="radio" name="mode_paiement" value="cb" checked> CB</label>
+                <label class="radio-label"><input type="radio" name="mode_paiement" value="surplace"> Sur place</label>
+              </div>
+            </div>
+          </li>
+
+          <li id="personnesContainer">
+            <!-- Les blocs personnes ajoutés par JS apparaissent ici (Personne 1..n).
+                 Le premier formulaire contact est déjà fourni plus haut. -->
+          </li>
+
+          <li>
+            <button type="submit">Valider l'inscription</button>
+          </li>
+        </ul>
+      </form>
+    </section>
+  </main>
+  <script>
+    // Génération dynamique des blocs "Personne X" en fonction du nombre choisi.
+    (function(){
+      const nbSelect = document.getElementById('nb_personnes');
+      const container = document.getElementById('personnesContainer');
+
+      function renderPersons(){
+        const n = parseInt(nbSelect.value,10) || 1;
+        container.innerHTML = '';
+        // si n > 1, on ajoute Personne 1..n-1 (le contact sert de première personne)
+        for(let i=2;i<=n;i++){
+          const block = document.createElement('div');
+          block.className = 'personne-supplementaire';
+          block.innerHTML = `
+            <h3>Personne ${i-1}</h3>
+            <div class="personne-row">
+              <div><label for="p${i}_nom">Nom</label><input type="text" id="p${i}_nom" name="personne_${i}_nom" required></div>
+              <div><label for="p${i}_prenom">Prénom</label><input type="text" id="p${i}_prenom" name="personne_${i}_prenom" required></div>
+              <div>
+                <label for="p${i}_type">Type</label>
+                <select id="p${i}_type" name="personne_${i}_type" required>
+                  <option value="adulte">Adulte</option>
+                  <option value="enfant">Enfant</option>
+                </select>
+              </div>
+            </div>
+          `;
+          container.appendChild(block);
+        }
+      }
+
+      // initial render (1 personne)
+      renderPersons();
+      nbSelect.addEventListener('change', renderPersons);
+    })();
+  </script>
+      <footer>
+        <p>© 2025 Handicap International – Tournoi de Jeux de Société</p>
+        <p>Contact : <a href="mailto:contact@mail.handicap-international.fr">contact@mail.handicap-international.fr</a></p>
+    </footer>
+</body>
+</html>

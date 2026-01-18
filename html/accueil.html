@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tournoi de jeux de société – Projet caritatif</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* RESET */
+    .site-creators-bottom {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+  color: #0071ce;
+  background-color: #f0f8ff; /* léger fond pour bien séparer du reste */
+  border-top: 1px solid #0071ce;
+  position: relative; /* ou fixed si tu veux que ce soit toujours visible */
+  width: 100%;
+}
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      color: #222;
+      line-height: 1.5;
+    }
+
+    /* NAVBAR */
+    nav {
+      background-color: #0071ce;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-weight: bold;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    nav a:hover, nav a:focus {
+      color: #a8d0ff;
+      outline: none;
+    }
+
+    /* BANDEAU IMAGE */
+    .banner-image {
+      width: 100%;
+      height: 220px;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+    }
+
+    /* CONTENU CENTRAL */
+    .container {
+      max-width: 1000px;
+      margin: 5px auto 5px;
+      padding: 0 20px;
+    }
+    h1 {
+      color: #0071ce;
+      text-align: center;
+      margin-bottom: 5px;
+      font-size: 2.4rem;
+    }
+    p.subtitle {
+      text-align: center;
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+
+    /* CHIFFRES + PROJETS */
+    .main-info {
+      display: flex;
+      gap: 25px;
+      margin-top: 5px;
+      flex-wrap: wrap;
+    }
+.stats {
+  flex: 1 1 220px;
+  border: 2px solid #0071ce;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* <-- centrer horizontalement */
+  justify-content: center; /* <-- centrer verticalement */
+  gap: 25px;
+  min-width: 220px;
+  user-select: none;
+}
+.stat-item {
+  text-align: center; /* <-- centrer le texte à l'intérieur */
+  width: 100%;
+  transition: transform 0.3s ease;
+  cursor: default;
+}
+    .stat-item:hover {
+      transform: scale(1.05);
+    }
+    .stat-number {
+      font-weight: 700;
+      font-size: 2.3rem;
+      color: #0071ce;
+      margin-bottom: 0px;
+      user-select: text;
+    }
+    .stat-text {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      user-select: text;
+    }
+    .stat-link {
+      font-size: 0.9rem;
+      color: #4b1e82;
+      text-decoration: underline;
+      cursor: pointer;
+      user-select: text;
+    }
+    .stat-link:hover, .stat-link:focus {
+      color: #2e0654;
+      outline: none;
+    }
+
+    /* PROJETS DESCRIPTION */
+    .project-details {
+      flex: 2 1 600px;
+      background: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgb(0 0 0 / 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 25px;
+      min-width: 280px;
+    }
+    .project-section {
+      margin-bottom: 5px;
+    }
+    .project-section h2 {
+      color: #0071ce;
+      margin-top: 0;
+      margin-bottom: 5px;
+      font-size: 1.6rem;
+    }
+    .project-section p {
+      margin-top: 0;
+      font-size: 1rem;
+    }
+
+    /* BOUTONS */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #0071ce;
+      color: white;
+      font-weight: 700;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.25s ease;
+      text-decoration: none;
+      user-select: none;
+    }
+    .btn:hover, .btn:focus {
+      background-color: #005bb5;
+      outline: none;
+      transform: scale(1.05);
+    }
+
+    /* PROCHAIN ÉVÉNEMENT */
+    .event-info {
+      margin-top: 20px;
+    }
+    .event-info strong {
+      font-weight: 700;
+    }
+    .signup-section h2 {
+      color: #0071ce;
+      font-size: 1.8rem;
+      margin-top: 0;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    input, select {
+      padding: 8px 10px;
+      font-size: 1rem;
+      border: 1.8px solid #ccc;
+      border-radius: 6px;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, select:focus {
+      border-color: #0071ce;
+      outline: none;
+    }
+    .submit-btn {
+      align-self: center;
+      background-color: #0071ce;
+      color: white;
+      font-weight: 700;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      width: fit-content;
+      user-select: none;
+    }
+    .submit-btn:hover, .submit-btn:focus {
+      background-color: #005bb5;
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* GALERIE PHOTO */
+    .gallery-section {
+      max-width: 900px;
+      margin: 20px auto 20px;
+      padding: 0 20px;
+    }
+    .gallery-section h2 {
+      color: #0071ce;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding-bottom: 10px;
+      scroll-behavior: smooth;
+    }
+    .gallery img {
+      width: 280px;
+      height: 160px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 10px rgb(0 0 0 / 0.15);
+    }
+    .gallery img:hover, .gallery img:focus {
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* BOUTON RETOUR EN HAUT */
+    #backToTop {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      background-color: #0071ce;
+      color: white;
+      border: none;
+      padding: 15px 18px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.25);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      user-select: none;
+      z-index: 110;
+    }
+    #backToTop:hover, #backToTop:focus {
+      background-color: #005bb5;
+      outline: none;
+      transform: scale(1.2);
+    }
+            /* Boutons */
+        .info-sections a, .cta-fixed-bottom a {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .cta-fixed-bottom {
+            position: relative; 
+            margin-top: auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2.5rem 0;
+        }
+        .btn-primary, .btn-secondary {
+  background-color: #0071ce;  /* bleu foncé */
+  border-color: #0071ce;
+  color: white;
+}
+
+.btn-primary:hover, .btn-primary:focus,
+.btn-secondary:hover, .btn-secondary:focus {
+  background-color: #005bb5; /* bleu foncé plus foncé au survol */
+  border-color: #005bb5;
+  outline: none;
+  transform: scale(1.05);
+}
+
+
+    /* PARTENAIRES */
+    .partners-section {
+      max-width: 900px;
+      margin: 80px auto 60px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .partners-section h2 {
+      color: #0071ce;
+      font-size: 1.8rem;
+      margin-bottom: 35px;
+    }
+    .partners-logos {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .partners-logos img {
+      max-height: 80px;
+      max-width: 160px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 1px rgba(0,0,0,0.2));
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .partners-logos img:hover, .partners-logos img:focus {
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #0071ce;
+      color: white;
+      text-align: center;
+      padding: 18px 15px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      user-select: none;
+    }
+    footer a {
+      color: #add7ff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    footer a:hover, footer a:focus {
+      color: white;
+      outline: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .main-info {
+        flex-direction: column;
+      }
+      .stats, .project-details {
+        min-width: 100%;
+      }
+      .gallery img {
+        width: 90vw;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="accueil.html" class="nav-link">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="presentation_asso.html" class="nav-link">Présentation Assoc</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#evenement" class="nav-link">Événement</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="event.html">Présentation de l'événement</a></li>
+                            <li><a href="inscription.html">Inscription</a></li>
+                            <li><a href="fiche_explicatif.html">Présentation des jeux</a></li>
+                            <li><a href="plan.html">Se repérer sur placee</a></li>
+                            <li><a href="don.html">Faite un Don !</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+  <div class="banner-image" role="img" aria-label="Paysage de montagne avec forêt et ciel orange"></div>
+
+  <main class="container">
+    <h1>Tournoi de jeux de société – Projet caritatif</h1>
+    <p class="subtitle">Organisé par l’équipe SAE 105 pour soutenir <strong>Handicap International</strong>.</p>
+
+    <section class="main-info" aria-label="Informations principales du projet">
+      <div class="stats" aria-describedby="stats-desc">
+        <div class="stat-item" tabindex="0">
+          <div class="stat-number">150</div>
+          <div class="stat-text">Participants attendus</div>
+        </div>
+        <div class="stat-item" tabindex="0">
+          <div class="stat-number">12</div>
+          <div class="stat-text">Jeux organisés</div>
+        </div>
+        <div class="stat-item" tabindex="0">
+          <div class="stat-number">25</div>
+          <div class="stat-text">Bénévoles</div>
+        </div>
+      </div>
+
+      <div class="project-details">
+        <section class="project-section" aria-labelledby="about-project">
+          <h2 id="about-project">À propos du projet</h2>
+          <p>Ce projet consiste en un tournoi de jeux de société afin de promouvoir l’inclusion, la solidarité et de collecter des fonds pour soutenir les programmes de Handicap International.<br /><p>
+          <a href="../html/event.html" class="btn" aria-label="Bouton pour accéder à la page Événement">Événement</a>
+        </section>
+        <section class="project-section" aria-labelledby="next-event">
+          <h2 id="next-event">Prochain événement</h2>
+          <p><strong>Date :</strong> 15 décembre 2025<br />
+          <strong>Lieu :</strong> Maison des Associations, Créteil (Île-de-France)<br />
+          Rejoignez-nous pour une journée ludique, ouverte à tous, et venez faire la différence !</p>
+          <a href="plan.html" class="btn" aria-label="Voir le plan du prochain événement">Voir le plan</a>
+        </section>
+      </div>
+    </section>
+            <!-- BOUTONS EN BAS DE PAGE -->
+        <div class="cta-fixed-bottom">
+            <a href="inscription.html" class="btn-primary">Je m’inscris</a>
+            <a href="don.html" class="btn-secondary">Faire un don</a>
+        </div>
+
+    <!-- Galerie photos -->
+    <section class="gallery-section" aria-label="Galerie photos des événements précédents">
+      <h2>Votre soutien peut changer leur vie</h2>
+      <div class="gallery" tabindex="0" aria-roledescription="carousel" aria-label="Photos du tournoi">
+        <img src="../img/mines.png" alt="Personnes jouant à un jeu de société" />
+        <img src="../img/gaza.png" alt="Plateau de jeu avec pions colorés" />
+        <img src="../img/Ukraine.png" alt="Participants souriants autour d’une table" />
+        <img src="../img/Tchad.jpg" alt="Dés colorés sur un plateau de jeu" />
+      </div>
+    </section>
+
+    <!-- Partenaires -->
+    <section class="partners-section" aria-label="Nos partenaires">
+      <h2>Collaborateurs pour un tournoi solidaire</h2>
+      <div class="partners-logos">
+        <img src="../img/handi.png" alt="Logo Handicap International" tabindex="0" />
+        <img src="../img/upec.png" alt="Logo UNICEF" tabindex="0" />
+      </div>
+    </section>
+  </main>
+
+  <button id="backToTop" aria-label="Retour en haut">↑</button>
+  <div class="site-creators-bottom" aria-label="Crédit pour la création du site">
+  Site web réalisé par : Éthan Scelles, Romaric Lin, Hakim Hamilcaro, Yanis Ait-Meziane
+</div>
+
+
+  <footer>
+    &copy; 2025 Tournoi de jeux de société - Projet caritatif - Contact : <a href="mailto:contact@tournoi-jeux.fr">contact@tournoi-jeux.fr</a>
+  </footer>
+
+  <script>
+    // Bouton retour en haut - Affiche si scroll > 300px
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 300) {
+        backToTopBtn.style.display = 'block';
+      } else {
+        backToTopBtn.style.display = 'none';
+      }
+    });
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

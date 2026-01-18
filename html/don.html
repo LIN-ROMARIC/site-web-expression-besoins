@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Don - Handicap International</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="accueil.html" class="nav-link">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="presentation_asso.html" class="nav-link">Présentation Assoc</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#evenement" class="nav-link">Événement</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="event.html">Présentation de l'événement</a></li>
+                            <li><a href="inscription.html">Inscription</a></li>
+                            <li><a href="fiche_explicatif.html">Présentation des jeux</a></li>
+                            <li><a href="plan.html">Se repérer sur placee</a></li>
+                            <li><a href="don.html">Faite un Don !</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+  <main>
+    <h1>Faire un don</h1>
+
+    <div class="don_container">
+      <!-- Image à gauche -->
+      <div class="don_image_gauche">
+        <img src="../img/gauche.png" alt="Action humanitaire Handicap International">
+      </div>
+
+      <!-- Formulaire au centre -->
+      <div class="don_formulaire_wrapper">
+        <section class="formulaire">
+          <h2>Formulaire de don</h2>
+
+          <div class="tombola-box" role="note" aria-live="polite">
+            Pour chaque <b>5 €</b> donné, vous gagnez <b>1 ticket</b> pour la tombola. Par exemple, si vous donnez <b>15 €</b>, vous recevez <b>3 tickets</b>.
+          </div>
+
+          <form action="confpay.html" method="post">
+            <ul>
+              <li>
+                <label for="don_nom">Nom</label>
+                <input type="text" id="don_nom" name="don_nom" required>
+              </li>
+
+              <li>
+                <label for="don_prenom">Prénom</label>
+                <input type="text" id="don_prenom" name="don_prenom" required>
+              </li>
+
+              <li>
+                <label for="don_email">E-mail</label>
+                <input type="email" id="don_email" name="don_email" required>
+              </li>
+
+              <li>
+                <label for="don_montant">Montant (€)</label>
+                <input type="number" id="don_montant" name="don_montant" min="1" step="0.5" required>
+              </li>
+
+              <li>
+                <label>Abonnement mensuel</label>
+                <div class="radio-group">
+                  <label class="radio-label"><input type="radio" name="don_abonnement" value="oui"> Oui</label>
+                  <label class="radio-label"><input type="radio" name="don_abonnement" value="non" checked> Non</label>
+                </div>
+              </li>
+
+              <li>
+                <label>Moyen de paiement</label>
+                <div class="radio-group">
+                  <label class="radio-label"><input type="radio" name="don_mode_paiement" value="cb" checked> CB</label>
+                  <label class="radio-label"><input type="radio" name="don_mode_paiement" value="surplace"> Sur place</label>
+                </div>
+              </li>
+
+              <li>
+                <button type="submit">Valider le don</button>
+              </li>
+            </ul>
+          </form>
+        </section>
+      </div>
+
+      <!-- Image à droite -->
+      <div class="don_image_droite">
+        <img src="../img/droite.png" alt="Soutien aux personnes en situation de handicap">
+      </div>
+    </div>
+  </main>
+    <footer>
+        <p>© 2025 Handicap International – Tournoi de Jeux de Société</p>
+        <p>Contact : <a href="mailto:contact@mail.handicap-international.fr">contact@mail.handicap-international.fr</a></p>
+    </footer>
+</body>
+</html>
